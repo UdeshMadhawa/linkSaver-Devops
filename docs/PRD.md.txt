@@ -1,0 +1,17 @@
+# Product Requirements Document (PRD)
+
+## Problem
+Users Often lose Use full links saved in browser. They are not organized, portable, or easyly accesible on other devices.
+
+## Solution
+LinkSaver is a simple web app that allow users to save, tag, and view link from anyware. It stores link in firebase firestore for easy access.
+
+## Users
+- Students
+- Researchs
+- Genaral Users who brows and save cotent
+
+## Key Features
+- Save Link With Title and Optional Tag
+- View all save links in real time
+- Store Links In cloud (Firebase)

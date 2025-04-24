@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkSaver</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 10px; }
+    input, button { padding: 8px; margin: 4px 0; width: 100%; }
+    .link-item { border-bottom: 1px solid #ccc; padding: 10px 0; }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="firebaseConfig.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <h1>LinkSaver</h1>
+  <input type="text" id="url" placeholder="URL" />
+  <input type="text" id="title" placeholder="Title" />
+  <input type="text" id="tag" placeholder="Tag (optional)" />
+  <button onclick="saveLink()">Save Link</button>
+
+  <div id="links"></div>
+</body>
+</html>

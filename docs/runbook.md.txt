@@ -1,0 +1,17 @@
+# Operations Runbook
+
+## How To Run The App
+1. open"index.hml"in browser
+2. Make sure "firebaseConfug.js" has correct credential
+3. Save links via the forms
+
+## How to Deploy
+- Option 1: Host on firebase hosting
+- option 2: Deploy via github page
+
+## How to troubleshoot
+- Open browser console 
+- check for ffirebase connection or firestore issues
+## Recovery Tips
+- Cheks firestore logs in firebase console
+- Re deploye or restore "index.hml" if needed

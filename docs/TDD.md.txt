@@ -1,0 +1,13 @@
+# Technicle Design Document (TDD)
+
+## Architectuer overview
+- Frontend: html/CS/JavaScript
+- Backend: Firebase Firestore
+- Hosting: Github Pages Or firebase hosting
+- Real time updates with Firestore onSnapshott()
+
+## Technologies Used
+- Firebase Firestore
+- Firebase Hosting (optional)
+- JavaScript for logic
+- TML/CSS for layout

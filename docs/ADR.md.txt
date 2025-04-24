@@ -1,0 +1,15 @@
+# Architectuer Decision Records (ADR)
+
+## Why FireBase?
+- No back end coding requerd
+- real time sync built in
+- free and easy for small apps
+
+## Why java Script?
+- Lightweight and fast for MVP
+- No build tools or dependencies
+- Easy to Explain And Text
+
+## Why GitHub / GitHub Pges?
+- CI/CD and Version Control in one place
+- Easy Public Hosting for small static sites
