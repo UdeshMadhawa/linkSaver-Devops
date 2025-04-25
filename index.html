@@ -4,84 +4,149 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LinkSaver</title>
+  
+  <!-- Google Fonts for Elegant Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: sans-serif;
-      max-width: 1000px;
-      margin: 20px auto;
-      padding: 10px;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fa; /* Soft background */
+      font-family: 'Poppins', sans-serif;
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    .form-container, .links-container {
-      flex: 1;
-      padding: 20px;
-      border-radius: 15px;
-      box-sizing: border-box;
+    .container {
+      max-width: 600px;
+      background-color: #ffffff; /* Clean card background */
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      position: relative;
     }
 
-    .form-container {
-      background-color: #f5f5f5;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .links-container {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      color: #000;
-      max-height: 80vh;
-      overflow-y: auto;
+    h1 {
+      color: #343a40;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 30px;
     }
 
     input, button {
-      padding: 8px;
-      margin: 4px 0;
+      padding: 14px;
+      margin: 10px 0;
       width: 100%;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ced4da;
       box-sizing: border-box;
+      transition: all 0.3s ease-in-out;
+    }
+
+    input:focus, button:focus {
+      outline: none;
+      border-color: #007bff;
     }
 
     button {
-      background-color: #008cff;
+      background-color: #007bff;
       color: white;
       border: none;
       cursor: pointer;
+      font-weight: bold;
     }
 
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    /* WhatsApp-style message bubble for links */
     .link-item {
-      border-bottom: 1px solid #ccc;
-      padding: 10px 0;
+      background-color: #e0f7fa; /* Light cyan for bubbles */
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin: 5px;
+      display: inline-block;
+      max-width: 80%;
+      font-size: 16px;
+      color: #00796b;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      word-wrap: break-word;
+      white-space: normal;
     }
 
-    a {
-      color: #007bff;
+    .link-item a {
+      color: #00796b;
       text-decoration: none;
+      font-weight: 500;
     }
 
-    a:hover {
+    .link-item a:hover {
       text-decoration: underline;
     }
+
+    .links-container {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Centering links inside the container */
+    .link-item-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .link-item-wrapper .link-item {
+      margin: 5px;
+    }
+
+    /* Scrollbar style */
+    .links-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .links-container::-webkit-scrollbar-thumb {
+      background-color: #007bff;
+      border-radius: 10px;
+    }
+
+    .links-container::-webkit-scrollbar-track {
+      background-color: #f1f1f1;
+    }
+
   </style>
+
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <!-- Firebase Config -->
   <script src="firebaseConfig.js"></script>
+
+  <!-- Your Script -->
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="form-container">
+  <div class="container">
     <h1>LinkSaver</h1>
-    <input type="text" id="url" placeholder="URL" />
-    <input type="text" id="title" placeholder="Title" />
-    <input type="text" id="tag" placeholder="Tag (optional)" />
+    <input type="text" id="url" placeholder="Enter URL" />
+    <input type="text" id="title" placeholder="Enter Title" />
+    <input type="text" id="tag" placeholder="Enter Tag (optional)" />
     <button onclick="saveLink()">Save Link</button>
-  </div>
 
-  <div class="links-container" id="links">
-    <!-- Saved links will be displayed here -->
+    <div class="links-container" id="links"></div>
   </div>
 </body>
 </html>

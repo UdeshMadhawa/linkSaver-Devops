@@ -15,14 +15,16 @@ async function saveLink() {
     createdAt: firebase.firestore.FieldValue.serverTimestamp()
   });
 
+  // Clear inputs after saving
   document.getElementById('url').value = '';
   document.getElementById('title').value = '';
   document.getElementById('tag').value = '';
 }
 
+// Fetch and display links from Firebase
 db.collection('links').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
   const linksContainer = document.getElementById('links');
-  linksContainer.innerHTML = '';
+  linksContainer.innerHTML = ''; // Clear container before re-rendering
   snapshot.forEach(doc => {
     const data = doc.data();
     linksContainer.innerHTML += `
@@ -34,3 +36,4 @@ db.collection('links').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
     `;
   });
 });
+
