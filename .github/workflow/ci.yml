@@ -1,0 +1,56 @@
+name: LinkSaver CI/CD
+
+# Trigger the workflow on push and pull request to the 'main' branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # Job to test the code
+  test:
+    runs-on: ubuntu-latest  # Run on the latest Ubuntu
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Check out the code
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2  # Set up Node.js
+      with:
+        node-version: '14'  # Specify the Node.js version
+
+    - name: Install dependencies
+      run: npm install  # Install dependencies (if you have package.json)
+
+    - name: Run tests (optional)
+      run: npm test  # Run tests if you have them set up (optional)
+
+  # Job to deploy the app (GitHub Pages)
+  deploy:
+    runs-on: ubuntu-latest  # Run on the latest Ubuntu
+    needs: test  # Only deploy if the test job passes
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2  # Check out the code
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2  # Set up Node.js again for deployment
+      with:
+        node-version: '14'
+
+    - name: Build the project
+      run: |
+        npm install  # Install dependencies
+        npm run build  # If you have a build step (like with React)
+    
+    - name: Deploy to GitHub Pages
+      run: |
+        git config --global user.name 'GitHub Actions'
+        git config --global user.email 'actions@github.com'
+        git remote set-url origin https://github.com/${{ github.repository }}
+        git push --force origin gh-pages:gh-pages  # Deploy to the gh-pages branch

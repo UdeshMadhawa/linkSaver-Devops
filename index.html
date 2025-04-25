@@ -5,9 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LinkSaver</title>
   <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 20px auto; padding: 10px; }
-    input, button { padding: 8px; margin: 4px 0; width: 100%; }
-    .link-item { border-bottom: 1px solid #ccc; padding: 10px 0; }
+    body {
+      font-family: sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .form-container, .links-container {
+      flex: 1;
+      padding: 20px;
+      border-radius: 15px;
+      box-sizing: border-box;
+    }
+
+    .form-container {
+      background-color: #f5f5f5;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .links-container {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      color: #000;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    input, button {
+      padding: 8px;
+      margin: 4px 0;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #008cff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .link-item {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
@@ -15,12 +72,16 @@
   <script defer src="script.js"></script>
 </head>
 <body>
-  <h1>LinkSaver</h1>
-  <input type="text" id="url" placeholder="URL" />
-  <input type="text" id="title" placeholder="Title" />
-  <input type="text" id="tag" placeholder="Tag (optional)" />
-  <button onclick="saveLink()">Save Link</button>
+  <div class="form-container">
+    <h1>LinkSaver</h1>
+    <input type="text" id="url" placeholder="URL" />
+    <input type="text" id="title" placeholder="Title" />
+    <input type="text" id="tag" placeholder="Tag (optional)" />
+    <button onclick="saveLink()">Save Link</button>
+  </div>
 
-  <div id="links"></div>
+  <div class="links-container" id="links">
+    <!-- Saved links will be displayed here -->
+  </div>
 </body>
 </html>
